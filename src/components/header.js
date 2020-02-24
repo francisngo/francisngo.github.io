@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Helmet from 'react-helmet';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
-import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { Link } from 'gatsby';
 import { throttle } from '@utils';
 import { headerHeight } from '@config';
@@ -17,7 +16,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${colors.white};
+  background-color: ${props => props.isHome ? colors.white : 'transparent'};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
@@ -44,6 +43,9 @@ const Navbar = styled(Nav)`
   counter-reset: item 0;
   position: relative;
   z-index: 12;
+`;
+const Logo = styled.div`
+  font-size: ${theme.fontSizes.xxlarge};
 `;
 const Hamburger = styled.div`
   ${mixins.flexCenter};
@@ -136,7 +138,7 @@ const NavListItem = styled.li`
     font-size: ${fontSizes.xsmall};
   }
 `;
-const NavLink = styled(AnchorLink)`
+const NavLink = styled(Link)`
   padding: 12px 10px;
 `;
 const ResumeLink = styled.a`
@@ -235,8 +237,10 @@ class Header extends Component {
 
   render() {
     const { scrollDirection, menuOpen, isMounted } = this.state;
-    const { location, navLinks } = this.props;
-    const isHome = location && location.pathname === '/';
+    const { navLinks, isHome } = this.props;
+    const timeout = isHome ? 3000 : 0;
+    const fadeClass = isHome ? 'fade' : '';
+    const fadeDownClass = isHome ? 'fadedown' : '';
 
     return (
       <HeaderContainer
@@ -247,9 +251,26 @@ class Header extends Component {
           <body className={menuOpen ? 'blur' : ''} />
         </Helmet>
         <Navbar>
+          <TransitionGroup component={null}>
+            {isMounted && (
+              <CSSTransition classNames={fadeClass} timeout={timeout}>
+                {isHome ? (
+                  <a href="/" aria-label="home">
+                    <Logo>Francis</Logo>
+                  </a>
+                ) : (
+                  <Link to="/" aria-label="home">
+                    <Logo>Francis</Logo>
+                  </Link>
+                )}
+              </CSSTransition>
+            )}
+          </TransitionGroup>
+
+
           <TransitionGroup>
             {isMounted && (
-              <CSSTransition classNames="fade" timeout={3000}>
+              <CSSTransition classNames={fadeClass} timeout={timeout}>
                 <Hamburger onClick={this.toggleMenu}>
                   <HamburgerBox>
                     <HamburgerInner menuOpen={menuOpen} />
@@ -260,32 +281,30 @@ class Header extends Component {
           </TransitionGroup>
 
           <NavLinks>
-            {isHome && (
               <NavList>
                 <TransitionGroup>
                   {isMounted &&
-                    navLinks &&
+                    Array.isArray(navLinks) &&
                     navLinks.map(({ url, name }, i) => (
                       <CSSTransition
                         key={i}
-                        classNames="fadedown"
-                        timeout={3000}
+                        classNames={fadeDownClass}
+                        timeout={timeout}
                       >
                         <NavListItem
                           key={i}
-                          style={{ transitionDelay: `${i * 100}ms` }}
+                          style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}
                         >
-                          <NavLink href={url}>{name}</NavLink>
+                          <NavLink to={url}>{name}</NavLink>
                         </NavListItem>
                       </CSSTransition>
                     ))}
                 </TransitionGroup>
               </NavList>
-            )}
             <TransitionGroup>
               {isMounted && (
-                <CSSTransition classNames="fadedown" timeout={3000}>
-                  <div style={{ transitionDelay: `600ms` }}>
+                <CSSTransition classNames={fadeDownClass} timeout={timeout}>
+                  <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
                     <ResumeLink
                       href={resume}
                       target="_blank"
@@ -300,7 +319,8 @@ class Header extends Component {
           </NavLinks>
         </Navbar>
 
-        {navLinks && (
+        {Array.isArray(navLinks) &&
+          navLinks && (
           <Menu
             isHome={isHome}
             navLinks={navLinks}

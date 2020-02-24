@@ -60,6 +60,7 @@ class Layout extends Component {
   render() {
     const { children, location } = this.props;
     const { isLoading } = this.state;
+    const isHome = location && location.pathname === '/';
 
     return (
       <StaticQuery
@@ -77,7 +78,9 @@ class Layout extends Component {
         render={({ site }) => (
           <div id="root">
             <Head metadata={site.siteMetadata} />
+
             <GlobalStyle />
+            
             <SkipToContent href="#content">Skip to Content</SkipToContent>
 
             {isLoading ? (
@@ -85,12 +88,12 @@ class Layout extends Component {
             ) : (
               <div className="container">
                 {location && nav && (
-                  <Header location={location} navLinks={nav} />
+                  <Header isHome={isHome} location={location} navLinks={nav} />
                 )}
-                <Social />
-                <Email />
+                {isHome && <Social />}
+                {isHome && <Email />}
                 {children}
-                <Footer />
+                {isHome && <Footer />}
               </div>
             )}
           </div>

@@ -29,12 +29,16 @@ module.exports = {
   nav: [
     {
       name: 'About',
-      url: '#about',
+      url: '/#about',
     },
     {
       name: 'Contact',
-      url: '#contact',
+      url: '/#contact',
     },
+    {
+      name: 'Gallery',
+      url: '/gallery/'
+    }
   ],
 
   headerHeight: 100,
