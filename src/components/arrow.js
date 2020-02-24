@@ -1,40 +1,44 @@
-import React, { memo } from 'react'
-import { css } from 'styled-components'
-import leftArrow from '../images/left-arrow.svg'
-import rightArrow from '../images/right-arrow.svg'
+import React, { memo } from 'react';
+import { css } from 'styled-components';
+import leftArrow from '../images/left-arrow.svg';
+import rightArrow from '../images/right-arrow.svg';
 
 const Arrow = ({ direction, handleClick }) => (
-	<div
-		onClick={handleClick}
-		css={css`
-			display: flex;
-			position: absolute;
-			top: 50%;
-			${direction === 'right' ? `right: 25px` : `left: 25px`};
-			height: 50px;
-			width: 50px;
-			justify-content: center;
-			background: rgba(255, 255, 255, 0.2);
-			cursor: pointer;
-			align-items: center;
-			transition: transform ease-in 0.1s;
+  <div
+    onClick={handleClick}
+    css={css`
+      display: flex;
+      position: absolute;
+      top: 50%;
+      ${direction === 'right' ? `right: 25px` : `left: 25px`};
+      height: 50px;
+      width: 50px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      align-items: center;
+      transition: transform ease-in 0.1s;
 
-			&:hover {
-				transform: scale(1.1);
-			}
+      &:hover {
+        transform: scale(1.1);
+      }
 
-			img {
-				transform: translateX(${direction === 'left' ? '-2' : '2'}px);
-				&:focus {
-				outline: 0;
-				}
-			}
-    	`}
-	>
-		{direction === 'right' ? <img src={rightArrow} width="14" height="22" /> : <img src={leftArrow} width="14" height="22" />}
-	</div>
-)
+      img {
+        transform: translateX(${direction === 'left' ? '-2' : '2'}px);
+        &:focus {
+          outline: 0;
+        }
+      }
+    `}
+  >
+    {direction === 'right' ? (
+      <img src={rightArrow} width="14" height="22" alt="right-arrow" />
+    ) : (
+      <img src={leftArrow} width="14" height="22" alt="left-arrow" />
+    )}
+  </div>
+);
 
-const MemoArrow = memo(Arrow)
+const MemoArrow = memo(Arrow);
 
-export default MemoArrow
+export default MemoArrow;

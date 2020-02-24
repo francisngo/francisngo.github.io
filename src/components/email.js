@@ -43,7 +43,7 @@ const EmailLink = styled.a`
 
 class Email extends Component {
   state = {
-    isMounted: false,
+    isMounted: !this.props.isHome,
   };
 
   componentDidMount() {

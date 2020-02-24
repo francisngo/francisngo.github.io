@@ -80,7 +80,7 @@ class Layout extends Component {
             <Head metadata={site.siteMetadata} />
 
             <GlobalStyle />
-            
+
             <SkipToContent href="#content">Skip to Content</SkipToContent>
 
             {isLoading ? (
@@ -90,8 +90,8 @@ class Layout extends Component {
                 {location && nav && (
                   <Header isHome={isHome} location={location} navLinks={nav} />
                 )}
-                {isHome && <Social />}
-                {isHome && <Email />}
+                {isHome && <Social isHome={isHome} />}
+                {isHome && <Email isHome={isHome} />}
                 {children}
                 {isHome && <Footer />}
               </div>

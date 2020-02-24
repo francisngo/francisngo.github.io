@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { css } from 'styled-components'
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { css } from 'styled-components';
 import SliderContent from './slidercontent';
 import Slide from './slide';
 import Arrow from './arrow';
@@ -15,109 +15,106 @@ const SliderCSS = css`
 `;
 
 const Slider = props => {
-	const getWidth = () => window.innerWidth;
-	const contentRef = useRef();
+  const getWidth = () => window.innerWidth;
+  const contentRef = useRef(null);
 
-	const { slides } = props;
+  const { slides } = props;
 
-	const [state, setState] = useState({
-		activeIndex: 0,
-		translate: getWidth(),
-		transition: 0.45,
-		_slides: [slides[slides.length - 1], ...slides, slides[0]]
-	})
+  const [state, setState] = useState({
+    activeIndex: 0,
+    translate: getWidth(),
+    transition: 0.45,
+    _slides: [slides[slides.length - 1], ...slides, slides[0]],
+  });
 
-	const { activeIndex, translate, _slides, transition } = state
+  const { activeIndex, translate, _slides, transition } = state;
 
-	/** smoothTransition */
-	const smoothTransition = () => {
-		if (activeIndex === 0 && translate > getWidth())
-			return setState({ ...state, transition: 0, translate: getWidth() })
+  /** smoothTransition */
+  const smoothTransition = useCallback(() => {
+    if (activeIndex === 0 && translate > getWidth())
+      return setState({ ...state, transition: 0, translate: getWidth() });
 
-		if (activeIndex === slides.length - 1 && translate === 0) {
-			return setState({
-				...state,
-				transition: 0,
-				translate: getWidth() * slides.length
-			})
-		}
-	}
+    if (activeIndex === slides.length - 1 && translate === 0) {
+      return setState({
+        ...state,
+        transition: 0,
+        translate: getWidth() * slides.length,
+      });
+    }
+  }, [activeIndex, slides, translate, state]);
 
-	/** Listen for CSS transform transition. */
-	useEffect(() => {
-		contentRef.current.addEventListener('transitionend', smoothTransition)
-		return () =>
-			contentRef.current.removeEventListener('transitionend', smoothTransition)
-	}, [activeIndex])
+  /** Listen for CSS transform transition. */
+  useEffect(() => {
+    const currentRef = contentRef.current;
+    currentRef.addEventListener('transitionend', smoothTransition);
+    return () =>
+      currentRef.removeEventListener('transitionend', smoothTransition);
+  }, [activeIndex, smoothTransition]);
 
-	/** Reset transition once we have positioned the translate to it's proper value. */
-	useEffect(() => {
-		if (transition === 0) {
-			setState({ ...state, transition: 0.45 })
-		}
-	}, [transition])
+  /** Reset transition once we have positioned the translate to it's proper value. */
+  useEffect(() => {
+    if (transition === 0) {
+      setState({ ...state, transition: 0.45 });
+    }
+  }, [transition, state]);
 
-	/** nextSlide */
-	const nextSlide = () => {
-		console.log('next slide')
-		const next = (activeIndex + 2) * getWidth()
+  /** nextSlide */
+  const nextSlide = () => {
+    const next = (activeIndex + 2) * getWidth();
 
-		if (activeIndex === slides.length - 1) {
-			return setState({
-				...state,
-				activeIndex: 0,
-				translate: next
-			})
-		}
+    if (activeIndex === slides.length - 1) {
+      return setState({
+        ...state,
+        activeIndex: 0,
+        translate: next,
+      });
+    }
 
-		setState({
-			...state,
-			activeIndex: activeIndex + 1,
-			translate: next
-		})
-	}
+    setState({
+      ...state,
+      activeIndex: activeIndex + 1,
+      translate: next,
+    });
+  };
 
-	/** prevSlide */
-	const prevSlide = () => {
-		console.log('prev slide')
-		const prev = activeIndex * getWidth()
+  /** prevSlide */
+  const prevSlide = () => {
+    const prev = activeIndex * getWidth();
 
-		if (activeIndex === 0) {
-			return setState({
-				...state,
-				activeIndex: slides.length - 1,
-				translate: prev
-			})
-		}
+    if (activeIndex === 0) {
+      return setState({
+        ...state,
+        activeIndex: slides.length - 1,
+        translate: prev,
+      });
+    }
 
-		setState({
-			...state,
-			activeIndex: activeIndex - 1,
-			translate: prev
-		})
-	}
+    setState({
+      ...state,
+      activeIndex: activeIndex - 1,
+      translate: prev,
+    });
+  };
 
-	console.log('activeIndex', activeIndex);
+  return (
+    <div css={SliderCSS}>
+      <SliderContent
+        ref={contentRef}
+        translate={translate}
+        transition={transition}
+        width={getWidth() * _slides.length}
+      >
+        {_slides.map((_slide, i) => (
+          <Slide key={_slide + i} content={_slide} images />
+        ))}
+      </SliderContent>
 
-	return (
-		<div css={SliderCSS}>
-			<SliderContent
-				ref={contentRef}
-				translate={translate}
-				transition={transition}
-				width={getWidth() * _slides.length}
-			>
-				{_slides.map((_slide, i) => (
-					<Slide key={_slide + i} content={_slide} images />
-				))}
-			</SliderContent>
+      <Arrow direction="left" handleClick={prevSlide} />
+      <Arrow direction="right" handleClick={nextSlide} />
 
-			<Arrow direction="left" handleClick={prevSlide} />
-			<Arrow direction="right" handleClick={nextSlide} />
-
-			<Dots slides={slides} activeIndex={activeIndex} />
-		</div>
-	)
+      <Dots slides={slides} activeIndex={activeIndex} />
+    </div>
+  );
 };
 
 export default Slider;

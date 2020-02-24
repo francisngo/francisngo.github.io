@@ -16,7 +16,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${props => props.isHome ? colors.white : 'transparent'};
+  background-color: ${props => (props.isHome ? colors.white : 'transparent')};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
@@ -37,7 +37,7 @@ const HeaderContainer = styled.header`
   &:hover {
     background-color: ${colors.white};
   }
-  
+
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
 `;
@@ -164,7 +164,7 @@ class Header extends Component {
     lastScrollTop: 0,
     scrollDirection: 'none',
     menuOpen: false,
-    isMounted: false,
+    isMounted: !this.props.isHome,
   };
 
   componentDidMount() {
@@ -272,7 +272,6 @@ class Header extends Component {
             )}
           </TransitionGroup>
 
-
           <TransitionGroup>
             {isMounted && (
               <CSSTransition classNames={fadeClass} timeout={timeout}>
@@ -286,31 +285,37 @@ class Header extends Component {
           </TransitionGroup>
 
           <NavLinks>
-              <NavList>
-                <TransitionGroup>
-                  {isMounted &&
-                    isHome &&
-                    Array.isArray(navLinks) &&
-                    navLinks.map(({ url, name }, i) => (
-                      <CSSTransition
+            <NavList>
+              <TransitionGroup>
+                {isMounted &&
+                  isHome &&
+                  Array.isArray(navLinks) &&
+                  navLinks.map(({ url, name }, i) => (
+                    <CSSTransition
+                      key={i}
+                      classNames={fadeDownClass}
+                      timeout={timeout}
+                    >
+                      <NavListItem
                         key={i}
-                        classNames={fadeDownClass}
-                        timeout={timeout}
+                        style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}
                       >
-                        <NavListItem
-                          key={i}
-                          style={{ transitionDelay: `${isHome ? i * 100 : 0}ms` }}
-                        >
-                          <NavLink to={url}>{name}</NavLink>
-                        </NavListItem>
-                      </CSSTransition>
-                    ))}
-                </TransitionGroup>
-              </NavList>
+                        <NavLink to={url}>{name}</NavLink>
+                      </NavListItem>
+                    </CSSTransition>
+                  ))}
+              </TransitionGroup>
+            </NavList>
             <TransitionGroup>
               {isMounted && (
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                  <div style={{ transitionDelay: `${isHome ? navLinks.length * 100 : 0}ms` }}>
+                  <div
+                    style={{
+                      transitionDelay: `${
+                        isHome ? navLinks.length * 100 : 0
+                      }ms`,
+                    }}
+                  >
                     <ResumeLink
                       href={resume}
                       target="_blank"
@@ -325,8 +330,7 @@ class Header extends Component {
           </NavLinks>
         </Navbar>
 
-        {Array.isArray(navLinks) &&
-          navLinks && (
+        {Array.isArray(navLinks) && navLinks && (
           <Menu
             isHome={isHome}
             navLinks={navLinks}

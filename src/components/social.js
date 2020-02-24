@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { socialMedia } from '@config';
-import {
-  IconGithub,
-  IconLinkedin,
-  IconInstagram,
-} from './icons';
+import { IconGithub, IconLinkedin, IconInstagram } from './icons';
 import styled from 'styled-components';
 import { theme, media } from '@styles';
 const { colors } = theme;
@@ -47,7 +43,7 @@ const SocialLink = styled.a`
 
 class Social extends Component {
   state = {
-    isMounted: false,
+    isMounted: !this.props.isHome,
   };
 
   componentDidMount() {

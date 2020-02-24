@@ -29,8 +29,8 @@ const HomeButton = styled(Link)`
   margin-top: 40px;
 `;
 
-const NotFoundPage = () => (
-  <Layout>
+const NotFoundPage = ({ location }) => (
+  <Layout location={location}>
     <MainContainer id="content">
       <Title>404</Title>
       <Subtitle>Page Not Found</Subtitle>

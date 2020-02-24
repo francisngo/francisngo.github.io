@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { email } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { colors } = theme;
 
 const HeroContainer = styled(Section)`
   ${mixins.flexCenter};
@@ -16,6 +15,7 @@ const HeroContainer = styled(Section)`
     width: 100%;
   }
 `;
+
 const Name = styled.h2`
   font-size: 75px;
   line-height: 1.1;
@@ -25,6 +25,7 @@ const Name = styled.h2`
   ${media.phablet`font-size: 45px;`};
   ${media.phone`font-size: 35px;`};
 `;
+
 const Subtitle = styled.h3`
   font-size: 75px;
   line-height: 1.1;
@@ -34,6 +35,7 @@ const Subtitle = styled.h3`
   ${media.phablet`font-size: 45px;`};
   ${media.phone`font-size: 35px;`};
 `;
+
 const Blurb = styled.div`
   margin-top: 25px;
   width: 50%;
@@ -41,11 +43,6 @@ const Blurb = styled.div`
   a {
     ${mixins.inlineLink};
   }
-`;
-const EmailLink = styled.a`
-  ${mixins.bigButton};
-  font-size: ${fontSizes.smallish};
-  margin-top: 50px;
 `;
 
 class Hero extends Component {
@@ -83,11 +80,6 @@ class Hero extends Component {
         style={{ transitionDelay: '400ms' }}
         dangerouslySetInnerHTML={{ __html: html }}
       />
-    );
-    const four = () => (
-      <div style={{ transitionDelay: '500ms' }}>
-        <EmailLink href={`mailto:${email}`}>Get In Touch</EmailLink>
-      </div>
     );
 
     const items = [one, two, three];
