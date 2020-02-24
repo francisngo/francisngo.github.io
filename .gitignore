@@ -59,6 +59,7 @@ typings/
 public
 
 # Mac files
+.vscode
 .DS_Store
 
 # Yarn
