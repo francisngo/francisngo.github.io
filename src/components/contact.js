@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import sr from '@utils/sr';
 import { srConfig, email } from '@config';
@@ -43,38 +43,34 @@ const EmailLink = styled.a`
   margin-top: 50px;
 `;
 
-class Contact extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-  };
+const Contact = ({ data }) => {
+  const { frontmatter, html } = data[0].node;
+  const { title } = frontmatter;
+  const contentRef = useRef(null);
 
-  componentDidMount() {
-    sr.reveal(this.contact, srConfig());
-  }
+  useEffect(() => sr.reveal(contentRef.current, srConfig()), []);
 
-  render() {
-    const { data } = this.props;
-    const { frontmatter, html } = data[0].node;
-    const { title } = frontmatter;
+  return (
+    <ContactContainer id="contact" ref={contentRef}>
+      <GreenHeading>What&apos;s Next?</GreenHeading>
 
-    return (
-      <ContactContainer id="contact" ref={el => (this.contact = el)}>
-        <GreenHeading>What&apos;s Next?</GreenHeading>
+      <Title>{title}</Title>
 
-        <Title>{title}</Title>
+      <div dangerouslySetInnerHTML={{ __html: html }} />
 
-        <div dangerouslySetInnerHTML={{ __html: html }} />
+      <EmailLink
+        href={`mailto:${email}`}
+        target="_blank"
+        rel="nofollow noopener noreferrer"
+      >
+        Say Hello
+      </EmailLink>
+    </ContactContainer>
+  );
+};
 
-        <EmailLink
-          href={`mailto:${email}`}
-          target="_blank"
-          rel="nofollow noopener noreferrer"
-        >
-          Say Hello
-        </EmailLink>
-      </ContactContainer>
-    );
-  }
-}
+Contact.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default Contact;
