@@ -33,6 +33,11 @@ const HeaderContainer = styled.header`
     ${props =>
       props.scrollDirection === 'down' ? `-${theme.headerScrollHeight}` : '0px'}
   );
+
+  &:hover {
+    background-color: ${colors.white};
+  }
+  
   ${media.desktop`padding: 0 40px;`};
   ${media.tablet`padding: 0 25px;`};
 `;
@@ -284,6 +289,7 @@ class Header extends Component {
               <NavList>
                 <TransitionGroup>
                   {isMounted &&
+                    isHome &&
                     Array.isArray(navLinks) &&
                     navLinks.map(({ url, name }, i) => (
                       <CSSTransition
