@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import Img from 'gatsby-image';
 import sr from '@utils/sr';
@@ -104,40 +104,35 @@ const AvatarContainer = styled.div`
   }
 `;
 
-class About extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-  };
+const About = ({ data }) => {
+  const { frontmatter, html } = data[0].node;
+  const { title, skills, avatar } = frontmatter;
+  const contentRef = useRef(null);
 
-  componentDidMount() {
-    sr.reveal(this.about, srConfig());
-  }
+  useEffect(() => sr.reveal(contentRef.current, srConfig()), []);
 
-  render() {
-    const { data } = this.props;
-    const { frontmatter, html } = data[0].node;
-    const { title, skills, avatar } = frontmatter;
+  return (
+    <AboutContainer id="about" ref={contentRef}>
+      <Heading>{title}</Heading>
+      <FlexContainer>
+        <ContentContainer>
+          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <SkillsContainer>
+            {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
+          </SkillsContainer>
+        </ContentContainer>
+        <PicContainer>
+          <AvatarContainer>
+            <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
+          </AvatarContainer>
+        </PicContainer>
+      </FlexContainer>
+    </AboutContainer>
+  );
+};
 
-    return (
-      <AboutContainer id="about" ref={el => (this.about = el)}>
-        <Heading>{title}</Heading>
-        <FlexContainer>
-          <ContentContainer>
-            <div dangerouslySetInnerHTML={{ __html: html }} />
-            <SkillsContainer>
-              {skills &&
-                skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
-            </SkillsContainer>
-          </ContentContainer>
-          <PicContainer>
-            <AvatarContainer>
-              <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
-            </AvatarContainer>
-          </PicContainer>
-        </FlexContainer>
-      </AboutContainer>
-    );
-  }
-}
+About.propTypes = {
+  data: PropTypes.array.isRequired,
+};
 
 export default About;
