@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { css } from 'styled-components';
-import leftArrow from '../images/left-arrow.svg';
-import rightArrow from '../images/right-arrow.svg';
+import leftArrow from '@images/left-arrow.svg';
+import rightArrow from '@images/right-arrow.svg';
 
 const Arrow = ({ direction, handleClick }) => (
   <div

@@ -30,6 +30,7 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     resolve: {
       alias: {
         '@components': path.resolve(__dirname, 'src/components'),
+        '@sections': path.resolve(__dirname, 'src/components/sections'),
         '@config': path.resolve(__dirname, 'src/config'),
         '@content': path.resolve(__dirname, 'src/content'),
         '@fonts': path.resolve(__dirname, 'src/fonts'),
