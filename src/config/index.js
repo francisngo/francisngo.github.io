@@ -35,10 +35,10 @@ module.exports = {
       name: 'Contact',
       url: '/#contact',
     },
-    {
-      name: 'Gallery',
-      url: '/gallery/',
-    },
+    // {
+    //   name: 'Gallery',
+    //   url: '/gallery/',
+    // },
   ],
 
   headerHeight: 100,

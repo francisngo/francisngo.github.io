@@ -41,3 +41,13 @@ exports.onCreateWebpackConfig = ({ stage, loaders, actions }) => {
     },
   });
 };
+
+exports.createPages = ({ graphql, actions }) => {
+  const { createRedirect } = actions;
+  createRedirect({
+    fromPath: `/gallery`,
+    toPath: `/`,
+    isPermanent: true,
+    redirectInBrowser: true,
+  });
+};
