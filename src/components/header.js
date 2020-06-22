@@ -16,7 +16,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
   padding: 0px 50px;
-  background-color: ${props => (props.isHome ? colors.white : 'transparent')};
+  background-color: ${colors.white};
   transition: ${theme.transition};
   z-index: 11;
   filter: none !important;
@@ -288,7 +288,6 @@ class Header extends Component {
             <NavList>
               <TransitionGroup>
                 {isMounted &&
-                  isHome &&
                   Array.isArray(navLinks) &&
                   navLinks.map(({ url, name }, i) => (
                     <CSSTransition

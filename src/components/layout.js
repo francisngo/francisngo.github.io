@@ -83,19 +83,15 @@ class Layout extends Component {
 
             <SkipToContent href="#content">Skip to Content</SkipToContent>
 
-            {isLoading ? (
-              <Loader finishLoading={this.finishLoading} />
-            ) : (
-              <div className="container">
-                {location && nav && (
-                  <Header isHome={isHome} location={location} navLinks={nav} />
-                )}
-                {isHome && <Social isHome={isHome} />}
-                {isHome && <Email isHome={isHome} />}
-                {children}
-                {isHome && <Footer />}
-              </div>
-            )}
+            <div className="container">
+              {location && nav && (
+                <Header isHome={isHome} location={location} navLinks={nav} />
+              )}
+              {isHome && <Social isHome={isHome} />}
+              {isHome && <Email isHome={isHome} />}
+              {children}
+              {isHome && <Footer />}
+            </div>
           </div>
         )}
       />
