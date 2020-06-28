@@ -83,13 +83,11 @@ class Layout extends Component {
             <SkipToContent href="#content">Skip to Content</SkipToContent>
 
             <div className="container">
-              {location && nav && (
-                <Header isHome={isHome} location={location} navLinks={nav} />
-              )}
-              {isHome && <Social isHome={isHome} />}
-              {isHome && <Email isHome={isHome} />}
-              {children}
-              {isHome && <Footer />}
+                <Header isHome={isHome} location={location}/>
+                {isHome && <Social isHome={isHome} />}
+                {isHome && <Email isHome={isHome} />}
+                {children}
+                {isHome && <Footer />}
             </div>
           </div>
         )}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
+import { navLinks } from '@config';
 import resume from '@images/resume.pdf';
 import styled from 'styled-components';
 import { theme, mixins, media, Nav } from '@styles';
@@ -39,10 +40,14 @@ const Sidebar = styled.div`
 `;
 const NavLinks = styled(Nav)`
   ${mixins.flexBetween};
+  width: 100%;
   flex-direction: column;
   text-align: center;
 `;
 const NavList = styled.ol`
+  padding: 0;
+  margin: 0;
+  list-style: none;
   width: 100%;
 `;
 const NavListItem = styled.li`
@@ -75,46 +80,40 @@ const ResumeLink = styled.a`
   width: max-content;
 `;
 
-class Menu extends Component {
-  static propTypes = {
-    isHome: PropTypes.bool.isRequired,
-    menuOpen: PropTypes.bool.isRequired,
-    navLinks: PropTypes.array.isRequired,
-    handleMenuClick: PropTypes.func.isRequired,
-  };
+const Menu = ({ menuOpen, toggleMenu }) => {
+  const handleMenuClick = e => {
+    const { target } = e;
+    const isLink = target.hasAttribute('href');
+    const isNotMenu = target.classList && target.classList[0].includes('MenuContainer');
 
-  render() {
-    const { menuOpen, navLinks, handleMenuClick } = this.props;
-
-    return (
-      <MenuContainer
-        menuOpen={menuOpen}
-        onClick={handleMenuClick}
-        aria-hidden={!menuOpen}
-        tabIndex={menuOpen ? 1 : -1}
-      >
-        <Sidebar>
-          <NavLinks>
-            <NavList>
-              {navLinks &&
-                navLinks.map(({ url, name }, i) => (
-                  <NavListItem key={i}>
-                    <NavLink href={url}>{name}</NavLink>
-                  </NavListItem>
-                ))}
-            </NavList>
-            <ResumeLink
-              href={resume}
-              target="_blank"
-              rel="nofollow noopener noreferrer"
-            >
-              Resume
-            </ResumeLink>
-          </NavLinks>
-        </Sidebar>
-      </MenuContainer>
-    );
+    if (isLink || isNotMenu) toggleMenu();
   }
+
+  return (
+    <MenuContainer
+      menuOpen={menuOpen}
+      onClick={handleMenuClick}
+      aria-hidden={!menuOpen}
+      tabIndex={menuOpen ? 1 : -1}
+    >
+      <Sidebar>
+        <NavLinks>
+          <NavList>
+            {navLinks && navLinks.map(({ url, name}, i) => (
+              <NavListItem key={i}>
+                <NavLink href={url}>{name}</NavLink>
+              </NavListItem>
+            ))}
+          </NavList>
+        </NavLinks>
+      </Sidebar>
+    </MenuContainer>
+  )
 }
+
+Menu.propTypes = {
+  menuOpen: PropTypes.bool.isRequired,
+  toggleMenu: PropTypes.func.isRequired,
+};
 
 export default Menu;
