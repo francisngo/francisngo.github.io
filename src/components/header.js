@@ -4,7 +4,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { throttle } from '@utils';
-import { headerHeight } from '@config';
+import { navLinks, headerHeight } from '@config';
 import resume from '@images/resume.pdf';
 import Menu from './menu';
 import styled from 'styled-components';
@@ -127,9 +127,10 @@ const NavLinks = styled.div`
   ${media.tablet`display: none;`};
 `;
 const NavList = styled.ol`
-  div {
-    ${mixins.flexBetween};
-  }
+  ${mixins.flexBetween};
+  padding: 0;
+  margin: 0;
+  list-style: none;
 `;
 const NavListItem = styled.li`
   margin: 0 10px;
@@ -157,7 +158,6 @@ const DELTA = 5;
 class Header extends Component {
   static propTypes = {
     location: PropTypes.object.isRequired,
-    navLinks: PropTypes.array.isRequired,
   };
 
   state = {
@@ -168,16 +168,14 @@ class Header extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState({ isMounted: true }), 100);
-
-    window.addEventListener('scroll', () => throttle(this.handleScroll()));
-    window.addEventListener('resize', () => throttle(this.handleResize()));
-    window.addEventListener('keydown', () => this.handleKeydown());
+    setTimeout(() => this.setState({ isMounted: true }, () => {
+      window.addEventListener('scroll', () => throttle(this.handleScroll()));
+      window.addEventListener('resize', () => throttle(this.handleResize()));
+      window.addEventListener('keydown', () => this.handleKeydown());
+    }),  100);
   }
 
   componentWillUnmount() {
-    this.setState({ isMounted: false });
-
     window.removeEventListener('scroll', () => this.handleScroll());
     window.removeEventListener('resize', () => this.handleResize());
     window.removeEventListener('keydown', () => this.handleKeydown());
@@ -242,7 +240,7 @@ class Header extends Component {
 
   render() {
     const { scrollDirection, menuOpen, isMounted } = this.state;
-    const { navLinks, isHome } = this.props;
+    const { isHome } = this.props;
     const timeout = isHome ? 3000 : 0;
     const fadeClass = isHome ? 'fade' : '';
     const fadeDownClass = isHome ? 'fadedown' : '';
@@ -272,7 +270,7 @@ class Header extends Component {
             )}
           </TransitionGroup>
 
-          <TransitionGroup>
+          <TransitionGroup component={null}>
             {isMounted && (
               <CSSTransition classNames={fadeClass} timeout={timeout}>
                 <Hamburger onClick={this.toggleMenu}>
@@ -286,7 +284,7 @@ class Header extends Component {
 
           <NavLinks>
             <NavList>
-              <TransitionGroup>
+              <TransitionGroup component={null}>
                 {isMounted &&
                   Array.isArray(navLinks) &&
                   navLinks.map(({ url, name }, i) => (
@@ -305,39 +303,13 @@ class Header extends Component {
                   ))}
               </TransitionGroup>
             </NavList>
-            {/* Resume Link */}
-            {/* <TransitionGroup>
-              {isMounted && (
-                <CSSTransition classNames={fadeDownClass} timeout={timeout}>
-                  <div
-                    style={{
-                      transitionDelay: `${
-                        isHome ? navLinks.length * 100 : 0
-                      }ms`,
-                    }}
-                  >
-                    <ResumeLink
-                      href={resume}
-                      target="_blank"
-                      rel="nofollow noopener noreferrer"
-                    >
-                      Resume
-                    </ResumeLink>
-                  </div>
-                </CSSTransition>
-              )}
-            </TransitionGroup> */}
           </NavLinks>
         </Navbar>
 
-        {Array.isArray(navLinks) && navLinks && (
-          <Menu
-            isHome={isHome}
-            navLinks={navLinks}
-            menuOpen={menuOpen}
-            handleMenuClick={e => this.handleMenuClick(e)}
-          />
-        )}
+        <Menu
+          menuOpen={menuOpen}
+          toggleMenu={this.toggleMenu}
+        />
       </HeaderContainer>
     );
   }
