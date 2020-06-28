@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { socialMedia } from '@config';
 import { IconGithub, IconLinkedin, IconInstagram } from './icons';
@@ -19,6 +20,10 @@ const SocialItemList = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
   &:after {
     content: '';
     display: block;
@@ -35,58 +40,61 @@ const SocialItem = styled.li`
 `;
 const SocialLink = styled.a`
   padding: 10px;
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+  }
   svg {
     width: 18px;
     height: 18px;
   }
 `;
 
-class Social extends Component {
-  state = {
-    isMounted: !this.props.isHome,
-  };
+const Social = ({ isHome }) => {
+  const [isMounted, setIsMounted] = useState(!isHome);
 
-  componentDidMount() {
-    setTimeout(() => this.setState({ isMounted: true }), 2000);
-  }
+  useEffect(() => {
+    if (!isHome) return;
+    const timeout = setTimeout(() => setIsMounted(true), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
-  render() {
-    const { isMounted } = this.state;
+  return (
+    <SocialContainer>
+      <TransitionGroup component={null}>
+        {isMounted && (
+          <CSSTransition classNames={isHome ? 'fade' : ''} timeout={isHome ? 3000: 0}>
+            <SocialItemList>
+              {socialMedia && socialMedia.map(({ url, name }, i) => (
+                <SocialItem key={i}>
+                  <SocialLink
+                    href={url}
+                    target='_blank'
+                    rel='nofollow noopener noreferrer'
+                    aria-label={name}
+                  >
+                    {name === 'Github' ? (
+                      <IconGithub />
+                    ) : name === 'Linkedin' ? (
+                      <IconLinkedin />
+                    ) : name === 'Instagram' ? (
+                      <IconInstagram />
+                    ) : (
+                      <IconGithub />
+                    )}
+                  </SocialLink>
+                </SocialItem>
+              ))}
+            </SocialItemList>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+    </SocialContainer>
+  );
+};
 
-    return (
-      <SocialContainer>
-        <TransitionGroup>
-          {isMounted && (
-            <CSSTransition timeout={3000} classNames="fade">
-              <SocialItemList>
-                {socialMedia &&
-                  socialMedia.map(({ url, name }, i) => (
-                    <SocialItem key={i}>
-                      <SocialLink
-                        href={url}
-                        target="_blank"
-                        rel="nofollow noopener noreferrer"
-                        aria-label={name}
-                      >
-                        {name === 'Github' ? (
-                          <IconGithub />
-                        ) : name === 'Linkedin' ? (
-                          <IconLinkedin />
-                        ) : name === 'Instagram' ? (
-                          <IconInstagram />
-                        ) : (
-                          <IconGithub />
-                        )}
-                      </SocialLink>
-                    </SocialItem>
-                  ))}
-              </SocialItemList>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
-      </SocialContainer>
-    );
-  }
-}
+Social.propTypes = {
+  isHome: PropTypes.bool,
+};
 
 export default Social;
