@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Head from './head';
-import Loader from './loader';
 import Header from './header';
 import Social from './social';
 import Email from './email';

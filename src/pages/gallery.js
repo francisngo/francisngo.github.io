@@ -2,12 +2,6 @@ import React from 'react';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import Layout from '@components/layout';
-import { Grid, Item } from '@components/grid';
-
-import styled from 'styled-components';
-import { Main } from '@styles';
-
-const GridImageWrapper = styled.div``;
 
 const GalleryPage = ({ location }) => {
   return (
