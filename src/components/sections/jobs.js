@@ -4,7 +4,7 @@ import sr from '@utils/sr';
 import { srConfig } from '@config';
 import styled from 'styled-components';
 import { theme, mixins, media, Section, Heading } from '@styles';
-const { colors, fontSizes, fonts } = theme;
+const { colors, fonts } = theme;
 
 const JobsContainer = styled(Section)`
 	position: relative;
@@ -229,7 +229,7 @@ const Jobs = ({ data }) => {
               isActive={activeTabId === i}
               id={`panel-${i}`}
               role="tabpanel"
-              aria-labelledBy={`tab-${i}`}
+              aria-labelledby={`tab-${i}`}
               tabIndex={activeTabId === i ? '0' : '-1'}
               hidden={activeTabId !== i}
             >
