@@ -1,7 +1,7 @@
 ---
 title: 'Hi, my name is'
 name: 'Francis Ngo'
-subtitle: 'is a software engineer, photographer ,and outdoor adventurer.'
+subtitle: 'is a software engineer, photographer, and outdoor adventurer.'
 contactText: 'Get In Touch'
 ---
 

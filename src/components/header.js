@@ -305,7 +305,8 @@ class Header extends Component {
                   ))}
               </TransitionGroup>
             </NavList>
-            <TransitionGroup>
+            {/* Resume Link */}
+            {/* <TransitionGroup>
               {isMounted && (
                 <CSSTransition classNames={fadeDownClass} timeout={timeout}>
                   <div
@@ -325,7 +326,7 @@ class Header extends Component {
                   </div>
                 </CSSTransition>
               )}
-            </TransitionGroup>
+            </TransitionGroup> */}
           </NavLinks>
         </Navbar>
 
