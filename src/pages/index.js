@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Layout from '@components/layout';
 import Hero from '@sections/hero';
 import About from '@sections/about';
-import Jobs from '@sections/Jobs';
+import Jobs from '@sections/jobs';
 import Contact from '@sections/contact';
 
 import styled from 'styled-components';
