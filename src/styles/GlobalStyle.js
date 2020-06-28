@@ -140,7 +140,6 @@ const GlobalStyle = createGlobalStyle`
     grid-template-columns: 100%;
   }
 
-
   img {
     width: 100%;
     max-width: 100%;
@@ -202,10 +201,24 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 0 15px 0;
   }
 
-  ul, ol {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+ul {
+    &.fancy-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      font-size: ${fontSizes.lg};
+      li {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+        &:before {
+          content: '▹';
+          position: absolute;
+          left: 0;
+          color: ${colors.black};
+        }
+      }
+    }
   }
 
   .gatsby-image-outer-wrapper {

@@ -26,8 +26,6 @@ const HeaderContainer = styled.header`
     props.scrollDirection === 'none'
       ? theme.headerHeight
       : theme.headerScrollHeight};
-  box-shadow: ${props =>
-    props.scrollDirection === 'up' ? `0 2px 4px ${colors.shadowNavy}` : 'none'};
   transform: translateY(
     ${props =>
       props.scrollDirection === 'down' ? `-${theme.headerScrollHeight}` : '0px'}
@@ -220,17 +218,6 @@ class Header extends Component {
   };
 
   toggleMenu = () => this.setState({ menuOpen: !this.state.menuOpen });
-
-  handleMenuClick = e => {
-    const target = e.target;
-    const isLink = target.hasAttribute('href');
-    const isContainer =
-      target.classList && target.classList[0].includes('MenuContainer');
-
-    if (isLink || isContainer) {
-      this.toggleMenu();
-    }
-  };
 
   render() {
     const { scrollDirection, menuOpen, isMounted } = this.state;

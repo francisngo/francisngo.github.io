@@ -32,13 +32,16 @@ module.exports = {
       url: '/#about',
     },
     {
+      name: 'Experience',
+      url: '/#jobs',
+    },
+    {
       name: 'Contact',
       url: '/#contact',
     },
   ],
 
   headerHeight: 100,
-
   white: '#e6f1ff',
   black: '#000000',
 

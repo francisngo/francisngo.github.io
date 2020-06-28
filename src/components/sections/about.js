@@ -36,6 +36,7 @@ const Skill = styled.li`
   font-family: ${fonts.Calibre};
   font-size: ${fontSizes.small};
   color: ${colors.black};
+  list-style: none;
   &:before {
     content: '▹';
     position: absolute;
