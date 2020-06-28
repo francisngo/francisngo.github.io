@@ -57,7 +57,7 @@ const Social = ({ isHome }) => {
     if (!isHome) return;
     const timeout = setTimeout(() => setIsMounted(true), 2000);
     return () => clearTimeout(timeout);
-  }, []);
+  }, [isHome]);
 
   return (
     <SocialContainer>

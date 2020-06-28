@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import { Link } from 'gatsby';
 import { throttle } from '@utils';
 import { navLinks, headerHeight } from '@config';
-import resume from '@images/resume.pdf';
 import Menu from './menu';
 import styled from 'styled-components';
 import { theme, mixins, media, Nav } from '@styles';
@@ -146,11 +145,6 @@ const NavListItem = styled.li`
 `;
 const NavLink = styled(Link)`
   padding: 12px 10px;
-`;
-const ResumeLink = styled.a`
-  ${mixins.smallButton};
-  margin-left: 10px;
-  font-size: ${fontSizes.smallish};
 `;
 
 const DELTA = 5;

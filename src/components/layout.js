@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 import Head from './head';
@@ -6,10 +6,15 @@ import Header from './header';
 import Social from './social';
 import Email from './email';
 import Footer from './footer';
-import { nav } from '@config';
 import styled from 'styled-components';
 import { GlobalStyle, theme } from '@styles';
 const { colors, fontSizes, fonts } = theme;
+
+// https://medium.com/@chrisfitkin/how-to-smooth-scroll-links-in-gatsby-3dc445299558
+if (typeof window !== 'undefined') {
+  // eslint-disable-next-line global-require
+  require('smooth-scroll')('a[href*="#"]');
+}
 
 const SkipToContent = styled.a`
   position: absolute;
@@ -44,56 +49,64 @@ const SkipToContent = styled.a`
   }
 `;
 
-class Layout extends Component {
-  static propTypes = {
-    children: PropTypes.node.isRequired,
-    location: PropTypes.object.isRequired,
-  };
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+`;
 
-  state = {
-    isLoading: true,
-  };
+const Layout = ({ children, location }) => {
+  const isHome = location && location.pathname === '/';
 
-  finishLoading = () => this.setState({ isLoading: false });
+  useEffect(() => {
+    if (isHome) return;
 
-  render() {
-    const { children, location } = this.props;
-    const { isLoading } = this.state;
-    const isHome = location && location.pathname === '/';
+    if (location.hash) {
+      const id = location.hash.substring(1); // location.hash without the '#'
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView();
+      }, 0);
+    }
+  }, [isHome, location.hash]);
 
-    return (
-      <StaticQuery
-        query={graphql`
-          query LayoutQuery {
-            site {
-              siteMetadata {
-                title
-                siteUrl
-                description
-              }
+  return (
+    <StaticQuery
+      query={graphql`
+        query LayoutQuery {
+          site {
+            siteMetadata {
+              title
+              siteUrl
+              description
             }
           }
-        `}
-        render={({ site }) => (
-          <div id="root">
-            <Head metadata={site.siteMetadata} />
+        }
+      `}
+      render={({ site }) => (
+        <div id="root">
+          <Head metadata={site.siteMetadata} />
 
-            <GlobalStyle />
+          <GlobalStyle />
 
-            <SkipToContent href="#content">Skip to Content</SkipToContent>
+          <SkipToContent href="#content">Skip to Content</SkipToContent>
 
-            <div className="container">
-                <Header isHome={isHome} location={location}/>
-                {isHome && <Social isHome={isHome} />}
-                {isHome && <Email isHome={isHome} />}
-                {children}
-                {isHome && <Footer />}
-            </div>
-          </div>
-        )}
-      />
-    );
-  }
+          <ContentContainer>
+            <Header isHome={isHome} location={location} />
+            {isHome && <Social isHome={isHome} />}
+            {isHome && <Email isHome={isHome} />}
+            {children}
+            {isHome && <Footer />}
+          </ContentContainer>
+        </div>
+      )}
+    />
+  );
 }
+
+Layout.propTypes = {
+  children: PropTypes.node.isRequired,
+  location: PropTypes.object.isRequired,
+};
 
 export default Layout;

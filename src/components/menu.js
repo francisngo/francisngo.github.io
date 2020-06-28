@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import AnchorLink from 'react-anchor-link-smooth-scroll';
 import { navLinks } from '@config';
-import resume from '@images/resume.pdf';
 import styled from 'styled-components';
 import { theme, mixins, media, Nav } from '@styles';
 const { colors, fontSizes, fonts } = theme;
@@ -72,12 +71,6 @@ const NavLink = styled(AnchorLink)`
   ${mixins.link};
   padding: 3px 20px 20px;
   width: 100%;
-`;
-const ResumeLink = styled.a`
-  ${mixins.bigButton};
-  padding: 18px 50px;
-  margin: 10% auto 0;
-  width: max-content;
 `;
 
 const Menu = ({ menuOpen, toggleMenu }) => {
