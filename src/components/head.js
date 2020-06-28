@@ -66,8 +66,8 @@ const Head = ({ metadata }) => (
   </Helmet>
 );
 
-export default Head;
-
 Head.propTypes = {
   metadata: PropTypes.object.isRequired,
 };
+
+export default Head;

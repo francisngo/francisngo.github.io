@@ -45,43 +45,45 @@ const GithubLink = styled.a`
   font-size: ${fontSizes.small};
 `;
 
-const Footer = () => (
-  <FooterContainer>
-    <SocialContainer>
-      <SocialItemList>
-        {socialMedia &&
-          socialMedia.map(({ name, url }, i) => (
-            <li key={i}>
-              <SocialLink
-                href={url}
-                target="_blank"
-                rel="nofollow noopener noreferrer"
-                aria-label={name}
-              >
-                {name === 'Github' ? (
-                  <IconGithub />
-                ) : name === 'Linkedin' ? (
-                  <IconLinkedin />
-                ) : name === 'Instagram' ? (
-                  <IconInstagram />
-                ) : (
-                  <IconGithub />
-                )}
-              </SocialLink>
-            </li>
-          ))}
-      </SocialItemList>
-    </SocialContainer>
-    <Copy>
-      <GithubLink
-        href="https://github.com/francisngo/francisngo.github.io"
-        target="_blank"
-        rel="nofollow noopener noreferrer"
-      >
-        Designed &amp; Built by Francis Ngo
-      </GithubLink>
-    </Copy>
-  </FooterContainer>
-);
+const Footer = () =>  {
+  return (
+    <FooterContainer>
+      <SocialContainer>
+        <SocialItemList>
+          {socialMedia &&
+            socialMedia.map(({ name, url }, i) => (
+              <li key={i}>
+                <SocialLink
+                  href={url}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  aria-label={name}
+                >
+                  {name === 'Github' ? (
+                    <IconGithub />
+                  ) : name === 'Linkedin' ? (
+                    <IconLinkedin />
+                  ) : name === 'Instagram' ? (
+                    <IconInstagram />
+                  ) : (
+                    <IconGithub />
+                  )}
+                </SocialLink>
+              </li>
+            ))}
+        </SocialItemList>
+      </SocialContainer>
+      <Copy>
+        <GithubLink
+          href="https://github.com/francisngo/francisngo.github.io"
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          Designed &amp; Built by Francis Ngo
+        </GithubLink>
+      </Copy>
+    </FooterContainer>
+  );
+}
 
 export default Footer;

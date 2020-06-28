@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { email } from '@config';
 import styled from 'styled-components';
@@ -13,10 +14,6 @@ const EmailContainer = styled.div`
   color: ${colors.lightSlate};
   ${media.desktop`right: 25px;`};
   ${media.tablet`display: none;`};
-  div {
-    width: 100%;
-    margin: 0 auto;
-  }
 `;
 const EmailLinkWrapper = styled.div`
   display: flex;
@@ -39,38 +36,39 @@ const EmailLink = styled.a`
   writing-mode: vertical-rl;
   margin: 20px auto;
   padding: 10px;
+
+  &:hover,
+  &:focus {
+    transform: translateY(-3px);
+  }
 `;
 
-class Email extends Component {
-  state = {
-    isMounted: !this.props.isHome,
-  };
+const Email = ({ isHome }) => {
+  const [isMounted, setIsMounted] = useState(!isHome);
 
-  componentDidMount() {
-    setTimeout(() => this.setState({ isMounted: true }), 2000);
-  }
+  useEffect(() => {
+    if (!isHome) return;
+    const timeout = setTimeout(() => setIsMounted(true), 2000);
+    return () => clearTimeout(timeout);
+  }, []);
 
-  componentWillUnmount() {
-    this.setState({ isMounted: false });
-  }
+  return (
+    <EmailContainer>
+      <TransitionGroup component={null}>
+        {isMounted && (
+          <CSSTransition timeout={isHome ? 3000 : 0} classNames={isHome ? 'fade' : ''}>
+            <EmailLinkWrapper>
+              <EmailLink href={`mailto:${email}`}>{email}</EmailLink>
+            </EmailLinkWrapper>
+          </CSSTransition>
+        )}
+      </TransitionGroup>
+    </EmailContainer>
+  );
+}
 
-  render() {
-    const { isMounted } = this.state;
-
-    return (
-      <EmailContainer>
-        <TransitionGroup>
-          {isMounted && (
-            <CSSTransition timeout={3000} classNames="fade">
-              <EmailLinkWrapper>
-                <EmailLink href={`mailto:${email}`}>{email}</EmailLink>
-              </EmailLinkWrapper>
-            </CSSTransition>
-          )}
-        </TransitionGroup>
-      </EmailContainer>
-    );
-  }
+Email.propTypes = {
+  isHome: PropTypes.bool,
 }
 
 export default Email;
