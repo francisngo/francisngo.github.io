@@ -74,7 +74,7 @@ const Footer = ({ showBelow }) => {
                 </div>
             </div>
             <div className="back-to-top">
-                <div tabindex="0" role="button" className="backtop" onClick={handleClick} onKeyDown={handleClick}>
+                <div tabIndex="0" role="button" className="backtop" onClick={handleClick} onKeyDown={handleClick}>
                     <span className="top"></span>
                 </div>
             </div>

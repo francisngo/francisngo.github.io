@@ -63,7 +63,7 @@ const HeaderNoSidebar = () => {
                         </div>
                     </div>
                     {/* Main Menu  */}
-                    <div tabindex="0" role="button" className="header-right" onClick={onMenuToggleClick} onKeyDown={onMenuToggleClick}>
+                    <div tabIndex="0" role="button" className="header-right" onClick={onMenuToggleClick} onKeyDown={onMenuToggleClick}>
                         <div className="hambergur-menu">
                             <div className="hamburger-box">
                                 <div className="hamburger-inner">
@@ -120,7 +120,7 @@ const HeaderNoSidebar = () => {
                             </li>
                         </Scrollspy>
                     </div>
-                    <div tabindex="0" role="button" className="trigger_closer" onClick={onMenuToggleClick} onKeyDown={onMenuToggleClick}>
+                    <div tabIndex="0" role="button" className="trigger_closer" onClick={onMenuToggleClick} onKeyDown={onMenuToggleClick}>
                         <span className="text">Close</span>
                         <span className="icon"></span>
                     </div>
