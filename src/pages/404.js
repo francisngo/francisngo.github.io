@@ -1,42 +1,28 @@
-import React from 'react';
-import { Link } from 'gatsby';
-import Layout from '@components/layout';
-import styled from 'styled-components';
-import { theme, mixins, media, Main } from '@styles';
-const { colors, fonts } = theme;
+import React from "react";
+import Layout from "../components/layout"
+import Client from "../components/client"
+import SEO from "../components/seo"
 
-const MainContainer = styled(Main)`
-  ${mixins.flexCenter};
-  flex-direction: column;
-  height: 100vh !important;
-`;
-const Title = styled.h1`
-  color: ${colors.black};
-  font-family: ${fonts.Calibre};
-  font-size: 20vw;
-  line-height: 1;
-  ${media.bigDesktop`font-size: 200px;`}
-  ${media.phablet`font-size: 120px;`};
-`;
-const Subtitle = styled.h2`
-  font-size: 5vw;
-  font-weight: 400;
-  ${media.bigDesktop`font-size: 50px;`};
-  ${media.phablet`font-size: 30px;`};
-`;
-const HomeButton = styled(Link)`
-  ${mixins.bigButton};
-  margin-top: 40px;
-`;
-
-const NotFoundPage = ({ location }) => (
-  <Layout location={location}>
-    <MainContainer id="content">
-      <Title>404</Title>
-      <Subtitle>Page Not Found</Subtitle>
-      <HomeButton to="/">Go Home</HomeButton>
-    </MainContainer>
+const NotFoundPage = () => (
+  <Layout>
+    <SEO title="404: Not found" />
+    <Client />
+    <div className="error-page-wrapper">
+        <div className="container">
+            <div className="row">
+                <div className="col-lg-12">
+                    <div className="inner">
+                        <h1 className="theme-color">404</h1>
+                        <h2>Page Not Found</h2>
+                        <p>Sorry, but the page you are looking for was moved, removed, renamed or might never existed...</p>
+                        <a className="rn-button" href="/">Go Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
   </Layout>
-);
+)
+export default NotFoundPage
 
-export default NotFoundPage;
+
