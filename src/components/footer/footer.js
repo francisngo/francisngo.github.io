@@ -30,18 +30,11 @@ const Footer = ({ showBelow }) => {
         <footer className="rn-footer-area bg-color-black pt--90 pb--60">
             <div className="footer-wrapper">
                 <div className="container">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.1s">
+                    <div className="row justify-content-center">
+                        <div className="col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.1s">
                             <div className="ft-info">
                                 <p>Designed &amp; Built by Francis Ngo</p>
                             </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.4s">
-                            <div className="ft-info">
-                                <p>francis.t.ngo@gmail.com<br />(510) 332-8722</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.6s">
                             <div className="ft-info">
                                 <ul className="social-share">
                                     {socialMedia && 
@@ -65,7 +58,17 @@ const Footer = ({ showBelow }) => {
                                     }
                                 </ul>
                             </div>
+                            
                         </div>
+                        {/* <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.4s">
+                            <div className="ft-info">
+                                <p>francis.t.ngo@gmail.com<br />(510) 332-8722</p>
+                            </div>
+                        </div> */}
+                        {/* <div className="col-lg-4 col-md-6 col-sm-6 col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.6s"> */}
+                            {/* <div className="ft-info"> */}
+                            {/* </div> */}
+                        {/* </div> */}
                         
                     </div>
                 </div>
