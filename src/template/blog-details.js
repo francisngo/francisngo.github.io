@@ -12,7 +12,7 @@ const BlogDetails = ({data, pageContext}) => {
     const imageSrc = image.childImageSharp;
     const {html} = data.markdownRemark;
     
-    const baseUrl = 'http://francisngo.me'
+    const baseUrl = 'https://francisngo.me'
     const disqusShortname = 'francisngo-me';
     const disqusConfig = {
         url: baseUrl + pageContext.slug,
