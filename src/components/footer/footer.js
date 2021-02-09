@@ -23,8 +23,6 @@ const Footer = ({ showBelow }) => {
     const handleClick = () => {
         window[`scrollTo`]({ top: 0, behavior: `smooth` });
     }
-    
-    console.log('socialMedia:' ,socialMedia)
 
     return (
         <footer className="rn-footer-area bg-color-black pt--90 pb--60">
