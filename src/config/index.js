@@ -1,5 +1,5 @@
 module.exports = {
-  siteTitle: 'Francis Ngo | Software Engineer',
+  siteTitle: 'Software Engineer',
   siteDescription:
     'Francis Ngo is a software engineer, adventurer, amateur photographer, and video maker based in Los Angeles, CA.',
   siteKeywords:

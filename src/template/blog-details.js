@@ -48,7 +48,7 @@ const BlogDetails = ({data, pageContext}) => {
                             <div className="blog-contact-form">
                                 <div className="social-share-inner text-center pt--50">
                                     <h3>Share This Post</h3>
-                                    <ul className="social-share-links liststyle d-flex justify-content-center">
+                                    <ul className="social-share-links liststyle d-flex justify-content-around">
                                         <li>
                                             <a className="facebook" target="_blank" rel="noopener noreferrer" href={'https://www.facebook.com/sharer.php?u=' + 
                                             baseUrl + 
