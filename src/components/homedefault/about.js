@@ -12,7 +12,7 @@ const About = ( ) => {
                 subtitle
                 description2
                 downloadButton
-                linkBUtton
+                linkButton
                 
             },
         }

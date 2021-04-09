@@ -2,8 +2,8 @@
     {
         "id": "main-banner",
         "title": "Francis <span class='color-primary'>Ngo</span>",
-        "subtitle": "Stay tuned. More to come...",
-        "bgImage": "./images/banner/bg-image-02.jpg",
+        "subtitle": "",
+        "bgImage": "./images/banner/bg-image-04.jpg",
         "image": "./images/banner/person-image.jpg"
     },
 
@@ -11,10 +11,10 @@
         "id": "about",
         "title": "Francis Ngo",
         "subtitle": "",
-        "description": "My name is Francis Ngo. I'm a software engineer but my favorite hobby is making videos and taking photos. I primarily capture urban landscapes and outdoor sceneries in California and Western United States. While I take pride in building applications from the ground up and solving interesting problems with code, my true love and passion has always been to explore new places and tell stories through videos.",
-        "description2": "I strive to create the best photos and video content possible. Currently, I'm documenting my overland vehicle build where I will be taking it across multiple states starting this year. Follow me along on my journey!",
+        "description": "Hello. My name is Francis. I grew up in the Bay Area and I am currently living in Los Angeles. I am a software engineer by trade but outside of programming. I like to shoot photography, make videos, hike, camp, and climb. I also drink too much coffee and eat too many blueberry muffins. Currently, I am building my car to prepare for long travels so that I can explore the outdoors and work remotely at the same time.",
+        "description2": "I love adventures, exploring new places and expanding my comfort zone. If you're interested in doing some work with me, shoot me an e-mail. Otherwise, follow me along my journey!",
         "downloadButton": "Download CV",
-        "linkBUtton": "Send Message",
+        "linkButton": "Send Message",
         "aboutData": [
             {   
                 "id": "aboutinfo-1",
