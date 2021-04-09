@@ -1,4 +1,5 @@
 import React from 'react';
+import { graphql } from "gatsby";
 import Img from "gatsby-image";
 import Image from "../elements/image";
 import { FiList, FiUser, FiInstagram } from "react-icons/fi";
@@ -55,7 +56,7 @@ const ProjectDetails = ({data}) => {
     )
 }
 
-export const query = graphql `
+export const query = graphql`
     query($id: String!) {
         projectJson(id: {eq: $id}) {
             id

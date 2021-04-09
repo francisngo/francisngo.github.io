@@ -2,7 +2,6 @@ const { slugify } = require('./src/utils/utilityFunctions');
 const path = require('path');
 const _ = require('lodash');
 
-
 exports.onCreateNode = ({node , actions}) => {
     const { createNodeField } = actions;
     if (node.internal.type === 'MarkdownRemark') {
@@ -29,14 +28,6 @@ exports.onCreateNode = ({node , actions}) => {
             value: slugify(node.name)
         });
     }
-
-    // actions.setWebpackConfig({
-    //     resolve: {
-    //         alias: {
-    //             '@config': path.resolve(__dirname, 'src/config'),
-    //         }
-    //     }
-    // })
 
 }
 
@@ -89,7 +80,6 @@ exports.createPages = ({actions, graphql}) => {
          // Create Project Page
          project.forEach(({ node }) => {
             createPage({
-                // path: node.fields.slug,
                 path: `project/${slugify(node.id)}`,
                 component: templates.projectDetails,
                 context: {
@@ -182,17 +172,5 @@ exports.createPages = ({actions, graphql}) => {
             })
         })
         // End Create Authors Page
-
-
-
-
-
-    })
-
+    });
 }
-
-
-
-
-
-

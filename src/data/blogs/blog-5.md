@@ -9,7 +9,7 @@ tags:
     - react
     - gatsby
     - styled components
-is_featured: true
+is_featured: false
 ---
 As Vintage decided to have a closer look into fast-paced New York web design realm in person, we get to acquaint with most diverse and exceptionally captivating personalities. We encounter professionals with careers to covet and lives to write books about.
 As Vintage decided to have a closer look into fast-paced New York web design realm in person, we get to acquaint with most diverse and exceptionally captivating personalities. We encounter professionals with careers to covet and lives to write books about. We thought a book is quite a wait away and decided to share some of the notes from his New York business meetings meanwhile.
