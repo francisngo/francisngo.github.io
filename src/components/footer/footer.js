@@ -31,7 +31,7 @@ const Footer = ({ showBelow }) => {
                     <div className="row justify-content-center">
                         <div className="col-12 mt_md--30 mt_sm--30 wow fadeInDown" data-wow-delay="200ms" data-wow-duration="0.1s">
                             <div className="ft-info">
-                                <p>Designed &amp; Built by Francis Ngo</p>
+                                <p>&copy;2021 - Designed &amp; Built by Francis Ngo</p>
                             </div>
                             <div className="ft-info">
                                 <ul className="social-share">
