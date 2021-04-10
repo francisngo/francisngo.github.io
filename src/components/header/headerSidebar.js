@@ -78,7 +78,7 @@ const HeaderNoSidebar = () => {
             <div className="trigger-popup-menu">
                 <div className="menu_full">
                     <div className="menu_wrapper">
-                        <Scrollspy className="popup_mainmenu" items={['home','about', 'portfolio' , 'news' , 'contact']} currentClassName="is-current" offset={-200}>
+                        <Scrollspy className="popup_mainmenu" items={['home','about', 'videos', 'contact']} currentClassName="is-current" offset={-200}>
                             <li>
                                 <a className="menu-hover-link" href="/#home" onClick={onMenuToggleClick}>
                                     <span className="hover-item">
@@ -95,21 +95,13 @@ const HeaderNoSidebar = () => {
                                 </a>
                             </li>
 
-                            {/* <li>
-                                <a className="menu-hover-link" href="/#portfolio" onClick={onMenuToggleClick}>
+                            <li>
+                                <a className="menu-hover-link" href="/videos" onClick={onMenuToggleClick}>
                                     <span className="hover-item">
-                                        <span data-text="Portfolio">Portfolio</span>
+                                        <span data-text="Videos">Videos</span>
                                     </span>
                                 </a>
-                            </li> */}
-
-                            {/* <li>
-                                <a className="menu-hover-link" href="/#news" onClick={onMenuToggleClick}>
-                                    <span className="hover-item">
-                                        <span data-text="News">Blog</span>
-                                    </span>
-                                </a>
-                            </li> */}
+                            </li>
                             
                             <li>
                                 <a className="menu-hover-link" href="/#contact" onClick={onMenuToggleClick}>

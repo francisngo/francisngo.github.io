@@ -54,7 +54,7 @@ const Header = () => {
                             {/* Start Mainmenu Area  */}
                             <div className="col-lg-9">
                                 <div className="menu_wrapper">
-                                    <Scrollspy className="mainmenuwrapper" items={['home','about', 'portfolio',  'news', 'contact']} currentClassName="is-current" offset={-200}>
+                                    <Scrollspy className="mainmenuwrapper" items={['home','about','videos','contact']} currentClassName="is-current" offset={-200}>
                                         <li>
                                             <a className="menu-hover-link" href="/#home">
                                                 <span className="hover-item">
@@ -71,21 +71,13 @@ const Header = () => {
                                             </a>
                                         </li>
                                         
-                                        {/* <li>
-                                            <a className="menu-hover-link" href="/#portfolio">
+                                        <li>
+                                            <a className="menu-hover-link" href="/videos">
                                                 <span className="hover-item">
-                                                    <span data-text="Portfolio">Portfolio</span>
+                                                    <span data-text="Videos">Videos</span>
                                                 </span>
                                             </a>
-                                        </li> */}
-
-                                        {/* <li>
-                                            <a className="menu-hover-link" href="/#news">
-                                                <span className="hover-item">
-                                                    <span data-text="News">Blog</span>
-                                                </span>
-                                            </a>
-                                        </li> */}
+                                        </li>
 
                                         <li>
                                             <a className="menu-hover-link" href="/#contact">
