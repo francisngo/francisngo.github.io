@@ -48,7 +48,9 @@ is_featured: true
 - [AreaBFE Clamshell Rooftop Tent](https://bit.ly/2Ox1nth) (50")
 - [AreaBFE Awning](https://bit.ly/3dQVkbw)
 - [Coleman Gas 2 Burner Stove](https://amzn.to/39WpPvI)
+- [Camp Chef Stryker 150 Propane](https://bit.ly/3dOxE7O)
 - [OAKS Titanium 3-Piece Cutlery Set](https://bit.ly/321GKbM)
+)
 
 #####Backpacking Setup
 - [Gregory Baltoro 65L](https://shorturl.at/oqAEU)
