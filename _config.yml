@@ -1,0 +1,33 @@
+title: Francis Ngo
+description: Personal Blog & Portfolio
+
+url: https://francisngo.github.io
+paginate_path: "blog/page:num/"
+permalink: blog/:title/
+
+# Header Option
+# header: large
+
+sass:
+    style: compressed
+
+markdown: kramdown
+highlighter: rouge
+plugins: [jekyll-paginate]
+paginate: 5
+
+navigation:
+    - title: Home
+      url: /index.html
+    - title: About
+      url: /about
+
+social:
+    github: francisngo
+    email: francis.t.ngo@gmail.com
+    linkedin: francisngo
+
+google_analytics: "UA-58263416-1"
+
+disqus:
+    shortname: francisngo
