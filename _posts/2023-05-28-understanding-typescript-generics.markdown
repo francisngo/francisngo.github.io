@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Understanding TypeScript - Generics"
-date:   2023-05-25
+date:   2023-05-28
 ---
 
 <p class="intro">Generic functions in TypeScript are functions that can work with different types of data. They allow the ability to write reusable code that can handle multiple data types without sacrificing type safety.</p>

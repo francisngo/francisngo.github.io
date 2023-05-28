@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Understanding TypeScript - Function Overloading"
-date:   2023-05-25
+date:   2023-05-28
 ---
 
 <p class="intro">Function overloading in TypeScript means that a single function can have multiple versions with different sets of parameters or return types. It's like having different "versions" of a function that can handle different situations. TypeScript will automatically choose the correct version of the function based on the arguments provided when calling it.</p>
