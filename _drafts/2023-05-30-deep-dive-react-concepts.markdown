@@ -82,7 +82,16 @@ React hooks are functions provided by React that allow you to use state and othe
 
 Here are some reasons React moved way from class components and introduced hooks: 
 
-1. Simplicity: Hooks simplify component logic by allowing you to reuse stateful logic without the need for class components and lifecycle methods. Hooks make it easier to understand and reason about the behavior of a component. 
-2. Reusability: Hooks promote reusability of a logic by making it easier to extract and share stateful and side-effectual code across multiple components. This enables better code organization and reduces duplication.
-3. Functional approach: Hooks align with the functional programming paradigm, which emphasizes immutability and pure functions. Functional components with hooks are easier to test, reason about and maintain. 
-4. Better performance: Hooks enable optimizations like memoization and lazy initialization of values, which can improve the performance of components.
+* Simplicity: Hooks simplify component logic by allowing you to reuse stateful logic without the need for class components and lifecycle methods. Hooks make it easier to understand and reason about the behavior of a component. 
+* Reusability: Hooks promote reusability of a logic by making it easier to extract and share stateful and side-effectual code across multiple components. This enables better code organization and reduces duplication.
+* Functional approach: Hooks align with the functional programming paradigm, which emphasizes immutability and pure functions. Functional components with hooks are easier to test, reason about and maintain. 
+* Better performance: Hooks enable optimizations like memoization and lazy initialization of values, which can improve the performance of components.
+
+React also provides some rules and anti-patterns to follow when using hooks: 
+
+* Hooks at Top Level Only: Hooks should only be called at the top level of a functional component or in custom hooks. Creating hooks dynamically inside loops or conditions can cause issues with the order of hooks and lead to unexpected behavior. Hooks should be called in a consistent and predictable manner. 
+* Use Hooks in Functional Components: Hooks are meant to be used in functional components. Avoid using hooks. Avoid using hooks in regular JavaScript functions or class components. 
+* Follow Naming Convetions. Hooks should always start with the word "use" to indicate that they are hooks. This convention helps with readability and understanding the purpose of a custom hook. 
+* Don't skip dependencies in useEffect: When using the useEffect hook, make sure to specify all the dependencies that the effect relies on. Skipping dependencies can lead to bugs and unexpected behavior. 
+* Custom Hooks for Reusable Logic: Extract reusable logic into hooks to promote code reusue and maintainability. Custom hooks provide a way to encapsulate and share stateful and side-effectual logic across multiple components.
+
