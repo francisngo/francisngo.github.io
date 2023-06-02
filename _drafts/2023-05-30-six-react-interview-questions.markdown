@@ -73,3 +73,16 @@ How do you know when to move to Redux or another state management tool?
 Moving to Redux or other state management tools is warranted when the application's state management becomes more complex. Redux provides a centralized store that holds the application state, making it accessible from any component. It offers a clear structure for managing state through actions and reducers, enabling predictable state changes. Redux is suitable when the application involves complex data flows, asynchronous actions, or needs global state management. 
 
 The decision to move to Redux or another state management tool should be based on the specific needs and scale of the application. When the application's state management becomes difficult to handle with React's built-in state or the React Context API, adopting Redux can provide benefits such as better organization, scalability, and support for advanced features like middleware. However, introducing Redux adds some additional boilerplate code and complexity, so it should be considered when the advantages outweigh the added complexity. 
+
+3. React Hooks
+
+What are React Hooks?
+
+React hooks are functions provided by React that allow you to use state and other React features in functional components. They were introducted in React 16.8 as aw ay to write reusable and stateful logic without the need for class components. Hooks provide a simpler and more intuitive way to manage state and perform side effects in functional components. 
+
+Here are some reasons React moved way from class components and introduced hooks: 
+
+1. Simplicity: Hooks simplify component logic by allowing you to reuse stateful logic without the need for class components and lifecycle methods. Hooks make it easier to understand and reason about the behavior of a component. 
+2. Reusability: Hooks promote reusability of a logic by making it easier to extract and share stateful and side-effectual code across multiple components. This enables better code organization and reduces duplication.
+3. Functional approach: Hooks align with the functional programming paradigm, which emphasizes immutability and pure functions. Functional components with hooks are easier to test, reason about and maintain. 
+4. Better performance: Hooks enable optimizations like memoization and lazy initialization of values, which can improve the performance of components.
