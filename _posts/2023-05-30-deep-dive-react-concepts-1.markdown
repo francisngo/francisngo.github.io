@@ -4,7 +4,9 @@ title:  "Deep Diving into Fundamental React Concepts - Part 1"
 date:   2023-05-30
 ---
 
-<p class="intro">In the world of web development, React has emerged as a powerful and widely adopted JavaScript library for building user interfaces. It's component-based architecture, efficient rendering, and extensive ecosystem have made it a top choice for developers seeking to create dynamic and interactive web applications. However, mastering React require a solid understanding of its fundamental concepts and patterns. In this blog, we will dive deep into the core principles of React, exploring topics such as Virtual DOM, hooks, state management, and design patterns. Whether you're preparing for a React interview or simply looking to enhance your understanding of React, this blog will serve as a "some-what" comprehensive guide to help navigate the intricacies of React and build robust, efficient, and maintainable applications with a deep understanding of the concepts. Let's embark on this journey together and unlock the true potential of this library.</p>
+<p class="intro">In the world of web development, React has emerged as a powerful and widely adopted JavaScript library for building user interfaces. It's component-based architecture, efficient rendering, and extensive ecosystem have made it a top choice for developers seeking to create dynamic and interactive web applications. However, mastering React require a solid understanding of its fundamental concepts and patterns.</p>
+
+In this blog, we will dive deep into the core principles of React, exploring topics such as Virtual DOM, hooks, state management, and design patterns. Whether you're preparing for a React interview or simply looking to enhance your understanding of React, this blog will serve as a "some-what" comprehensive guide to help navigate the intricacies of React and build robust, efficient, and maintainable applications with a deep understanding of the concepts. Let's embark on this journey together and unlock the true potential of this library.
 
 1. The Virtual DOM
 
