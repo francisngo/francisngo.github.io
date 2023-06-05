@@ -188,3 +188,62 @@ const App = () => {
 
 export default App;
 ```
+
+4. `useCallback`:
+    * Definition: `useCallback` is used in React to memoize a function, which means it returns a memoized version of the function that only changes if its dependencies have changed. * Use Case: `useCallback` is primarily used to optimize performance by preventing unnecessary re-renders of components that depend on the function. Essentially, it ensures that the function is only recreated if its dependencies change, saving unnecessary re-creation of the function and reducing performance overhead. 
+
+```javascript
+import { useState, useCallback } from 'react';
+
+const Form = () => {
+    const [ formData, setFormData ] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
+
+    const handleInputChange = useCallback(event => {
+        const { name, value } = event.target;
+
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }))
+    }, []);
+
+    const handleSubmit = useCallback(event => {
+        event.preventDefault()
+
+        if(validateForm()) {
+            // perform submit action
+        }
+    }, [formData]);
+
+    const validateForm = useCallback(() => {
+        const { name, email, password } = formData;
+        // perform validation logic
+        const isValid = name.trim() !== '' && email.trim() !== '' && password.trim() !== '';
+        return isValid;
+    }, [formData])
+
+    return (
+        <form onSubmit={handleSubmit}>
+        <label>
+            Name:
+            <input type="text" name="name" value={formData.name} onChange={handleInputChange} />
+        </label>
+        <label>
+            Email:
+            <input type="email" name="email" value={formData.email} onChange={handleInputChange} />
+        </label>
+        <label>
+            Password:
+            <input type="password" name="password" value={formData.password} onChange={handleInputChange} />
+        </label>
+        <button type="submit">Submit</button>
+        </form>
+    );
+}
+
+export default Form;
+```
