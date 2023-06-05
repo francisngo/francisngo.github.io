@@ -315,3 +315,114 @@ const ProductList = () => {
 export default ProductList;
 ```
 
+In this example, we have a `ProductList` component that displays a list of products fetched from an API. The component includes a filter input where use can enter a category to filter the products. 
+
+The `fetchProducts` function simulates an API call to retrieve the products. We use `useMemo` to memoize the result of `fetchProducts` so that it is only called once during the initial render.
+
+The `filteredProducts` variable is also memoized using `useMemo`. It applies the filter to the `memoizedProducts` based on the `filter` state. Whenever the `filter` or `memoizedProducts` changes, the filtering logic is re-executed. However, if neither of these dependencies changes, the filtered products are reused from the previous render. 
+
+6. `useRef`:
+    * Definition: `useRef` hook provides a way to create a mutable value that persists across renders of a functional component. It allows you to create a reference to a DOM element or any other value and access it consistently throughout the component's lifecycle. 
+    * Use Case: `useRef` is used to store a value that won't trigger a re-render when it changes. It's useful when you need to keep track of a value or interact with a DOM element directly. 
+
+```javascript
+import { useRef } from 'react';
+
+const InputForm = () => {
+    const inputRef = useRef(null);
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        // access the inpute value using the ref
+        console.log(inputRef.current.value);
+        // perform submit action
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+        <label htmlFor="name">Name:</label>
+        <input type="text" id="name" ref={inputRef} />
+        <button type="submit">Submit</button>
+        </form>
+  );
+}
+
+export default InputForm;
+```
+
+In this example, we have an `InputForm` component that renders a form with an input field and a submit button. The `inputRef` is created using `useRef` and assigned to the `ref` prop of the input element. 
+
+When the form is submitted, the `handleSubmit` function is called. By accessing `inputRef.current.value`, we can retrieve the current value of the input field without needing to rely on a state or trigger a re-render. 
+
+The `useRef` hook is handy when you need to access or modify a value without causing a re-render. It's commony used for accessing DOM elements, managing focus, storing previous values, or interacting with third-party libraries that require direct access to an element. 
+
+Keep in mind, if you need to update a value that affects the component's rendering, we would use `useState` or `useReducer` instead.
+
+7. `useReducer`: 
+    * Definition: `useReducer` provides a way to manage state in a component using a reducer function. It is an alternative to the `useState` hook when we have more complex state logic that involves multiple values or requires actions to be dispatched. 
+    * Use Case: `useReducer` allows us to manage state in a component by specifying how state updates should be handled based on different actions.
+
+```javascript
+import { useReducer } from 'react';
+
+const cartReducer = (state, action) => {
+  switch (action.type) {
+    case 'ADD_TO_CART':
+      return { ...state, cartItems: [...state.cartItems, action.payload] };
+    case 'REMOVE_FROM_CART':
+      return { ...state, cartItems: state.cartItems.filter(item => item.id !== action.payload) };
+    case 'CLEAR_CART':
+      return { ...state, cartItems: [] };
+    default:
+      return state;
+  }
+};
+
+const ShoppingCart = () => {
+  const initialState = { cartItems: [] };
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  const handleAddToCart = (item) => {
+    dispatch({ type: 'ADD_TO_CART', payload: item });
+  };
+
+  const handleRemoveFromCart = (itemId) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: itemId });
+  };
+
+  const handleClearCart = () => {
+    dispatch({ type: 'CLEAR_CART' });
+  };
+
+  return (
+    <div>
+      <h2>Shopping Cart</h2>
+      <ul>
+        {state.cartItems.map(item => (
+          <li key={item.id}>
+            {item.name} - ${item.price}
+            <button onClick={() => handleRemoveFromCart(item.id)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleClearCart}>Clear Cart</button>
+      <button onClick={() => handleAddToCart({ id: 1, name: 'Product 1', price: 10 })}>Add Product 1</button>
+      <button onClick={() => handleAddToCart({ id: 2, name: 'Product 2', price: 20 })}>Add Product 2</button>
+    </div>
+  );
+};
+
+export default ShoppingCart;
+```
+
+In this example, we have a `ShoppingCart` component that uses `useReducer` to manage the state of a shopping cart. The `cartReducer` function handles the state updates based on different actions. 
+
+When the user clicks the `Add Product` buttons, the corresponding product is added to the cart by dispatching the `ADD_TO_CART` action with the product data. 
+
+The component renders the cart items with their names and prices, along with buttons to remove items and clear the cart. 
+
+The reducer function determines how the cart state should be modified based on the dispatched actions, allowing for a more structured and scalable approach to handling the state of the shopping cart. 
+
+There are other React hooks on the documentation but these are the ones that I find myself using more often than others. 
+
+In conclusion, understanding the core principles of React is essential for developers looking to leverage its power in building modern web applications. Through this blog post, we have delved into important concepts such as the Virtual DOM, React state, and React hooks. We have seen how the Virtual DOM enables efficient rendering, allowing for optimized performance and seamless updates. React state has provided us with a means to manage and manipulate data within components, enabling dynamic and interactive user interfaces. Additionally, React hooks have revolutionized the way we write functional components, offering a more concise and reusable approach to state management and side effects. By grasping these concepts and adhering to React's best practices and rules, developers can create scalable, maintainable, and high-performing applications. So, let's continue exploring the possibilities of React, embracing its principles, and pushing the boundaries of web development. Happy coding!
