@@ -247,3 +247,71 @@ const Form = () => {
 
 export default Form;
 ```
+
+In this example, we have a form component with three input fields: name, email, password. The `handleInputChange` function is wrapped with `useCallback` to memorize it, ensuring that it doesn't get recreated unnecessarily. 
+
+Similarly, the `handleSubmit` function is memoized with `useCallback` and it depends on the `formData` state. Whenever the `formData` changes, a new version of the `handleSubmit` function is created. This ensures that the form's submission logic is executed only when necessary. 
+
+The `validateForm` function is also memoized with `useCallback` and it depends on the `formData` state. It performs the validation logic by checking if the name, email and password fields are not empty. By memoizing the validation function, we prevent unnecessary recalculations of the validation logic during re-renders. 
+
+5. `useMemo`:
+    * Definition: `useMemo` is a hook that allows you to memoize the result of a computation and cache it. It takes a function and an array of dependencies as arguments, and it returns the memoized value. The memoized value is only recalculate when one of the dependencies changes. 
+    * Use Case: `useMemo` is useful when you have a computationally expensive operation that you want to avoid repeating unnecessarily. Essentially, it helps you remember the result of a complex calculation so that you don't have to recalculate it every time your component renders. 
+
+```javascript
+import { useState, useMemo } from 'react';
+
+const ProductList = () => {
+    const [products, setProducts] = useState([]);
+    const [filter, setFilter] = useState('');
+
+    const fetchProducts = () => {
+        // make an api call to fetch the products from the server...
+        return [
+            { id: 1, name: 'iPhone', category: 'Electronics', price: 999 },
+            { id: 2, name: 'AirPods', category: 'Electronics', price: 199 },
+            { id: 3, name: 'Shoes', category: 'Fashion', price: 79 },
+            { id: 4, name: 'Backpack', category: 'Fashion', price: 49 },
+        ];
+    }
+
+    // fetch the products and memoize the result
+    const memoizedProducts = useMemo(() => fetchProducts(), []);
+
+    // apply the filter to the products
+    const filteredProducts = useMemo(() => {
+        return memoizedProducts.filter(
+            (product) => product.category.toLowerCase() === filter.toLowerCase()
+        );
+    }, [filter, memoizedProducts]);
+
+    const handleFilterChange = event => {
+        const { value } = event.target;
+        setFilter(value);
+    }
+
+    return (
+        <div>
+        <label htmlFor="filter">Filter by category:</label>
+        <input
+            type="text"
+            id="filter"
+            value={filter}
+            onChange={handleFilterChange}
+        />
+
+        <h2>Filtered Products:</h2>
+        <ul>
+            {filteredProducts.map((product) => (
+            <li key={product.id}>
+                {product.name} - ${product.price}
+            </li>
+            ))}
+        </ul>
+    </div>
+  );
+}
+
+export default ProductList;
+```
+
