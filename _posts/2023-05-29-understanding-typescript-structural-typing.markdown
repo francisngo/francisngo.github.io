@@ -6,9 +6,9 @@ date:   2023-05-29
 
 <p class="intro">Structural Typing is a concept in TypeScript where the type or behavior of an object is determined by its structure and the operations that can be performed on it, rather than its explicity type declaration. It focuses on the "shape" of an object rather than its specific type.</p>
 
-In programming, structural typing is also known as "duck typing". TypeScript uses duck typing to determine of an object is compatible with a given type based on its structure and the presence of certain properties or methods, rather than relying on explicity type annotations. 
+In programming, structural typing is also known as "duck typing". TypeScript uses duck typing to determine of an object is compatible with a given type based on its structure and the presence of certain properties or methods, rather than relying on explicitly type annotations. 
 
-here are three examples to help understand "duck typing" in TypeScript: 
+Here are three examples to help understand "duck typing" in TypeScript: 
 
 1. Duck Typing with Interfaces
 

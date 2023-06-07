@@ -66,4 +66,4 @@ const b: boolean = dbType;
 console.log(b); //'postgres'
 ```
 
-Bad news is TypeScript's soundness holes can cause real problems in real applications but the good news is that those problems are relatively infrequent. For every soundness-related bug that sneaks through, TypeScript will probably save us from hundres of "cannot read property of undefined" errors. 
+Bad news is TypeScript's soundness holes can cause real problems in real applications but the good news is that those problems are relatively infrequent. For every soundness-related bug that sneaks through, TypeScript will probably save us from hundreds of "cannot read property of undefined" errors. 
