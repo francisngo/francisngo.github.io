@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "How Migrating from Vanilla Redux to Redux Toolkit Improved State Management"
-date:   2023-06-07
+date:   2023-06-12
 ---
 
 <p class="intro">In the world of React development, state management is a crucial aspect of building scalable applications. As projects grow in complexity, managing applications state efficently becomes paramount. Redux, a predictable state container of JavaScript applications, emerged as a popular choice but developers often faced challenges due to its verbosity and boilerplate. To address these concerns, the creators of Redux introduced Redux Toolkit, a comprehensive utility kit design to streamline Redux usage.</p>
