@@ -7,4 +7,3 @@ node_modules
 .jekyll-cache/*
 _vendor
 samples
-_drafts
