@@ -30,8 +30,24 @@ Rate limiting in computer systems works in a similar way. It sets a limit on how
 
 Rate limiting can be implemented using different algorithms. Each of them has their pros and cons. 
 
-1. Fixed Window Algorithm: 
-The Fixed Window Counter algorithm allows a fixed number of request within a specific time window. If the number of requests exceeds the limit, further requests are rejected until the next time window begins.
+1. Fixed Window Algorithm:
+
+Definition: The Fixed Window Counter algorithm allows a fixed number of request within a specific time window. If the number of requests exceeds the limit, further requests are rejected until the next time window begins.
+Advantages: 
+- Simple and easy to understand and implement
+- Provides a predictable and consistent rate limiting behavior
+Disadvantages:
+- May lead to uneven distribution of requests within the time window
+- Potential for sudden spikes in traffic right after a time window starts. 
 
 
-2. Rolling Window Algorithm: 
+2. Sliding Window Log: 
+
+Definition: The Sliding Window Log algorithm tracks the timestamps of requests and maintains a log of the most recent requests within a time window. If the number of requests exceeds the limit, further requests are rejected until the oldest request falls outside the time window. 
+Advantages:
+- Offers a more granular approach compared to Fixed Window Counter
+- Helps distribute requests more evenly within the time window
+Disadvantages:
+- Requires additional memory to store request timestamps
+- Can be more complex to implement compared to Fixed Window Counter
+
