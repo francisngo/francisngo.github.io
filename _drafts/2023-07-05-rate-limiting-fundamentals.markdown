@@ -26,4 +26,12 @@ Rate limiting in computer systems works in a similar way. It sets a limit on how
 4. Enhances Security: Rate limiting can act as a defense mechanism against certain types of attacks, such as Distributed Denial of Service (DDoS) attacks. It helps mitigate the impact of such attacks by limiting the rate of incoming requests, making it harder for attackers to overwhelm the system. 
 5. Cost Optimization: Rate limiting can help optimize costs associated with system resources, especially in cloud computing environments where usage is often tied to expenses. By controlling and limiting excessive usage, it reduces unnecessary resource consumption and associated costs. 
 
+#### Common Rate Limiting Algorithms 
 
+Rate limiting can be implemented using different algorithms. Each of them has their pros and cons. 
+
+1. Fixed Window Algorithm: 
+The Fixed Window Counter algorithm allows a fixed number of request within a specific time window. If the number of requests exceeds the limit, further requests are rejected until the next time window begins.
+
+
+2. Rolling Window Algorithm: 
